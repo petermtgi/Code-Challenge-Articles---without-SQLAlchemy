@@ -1,7 +1,0 @@
-[[source]]
-[packages]
-sqlalchemy = "*"
-tabulate = "*"
-
-[requires]
-python_version = "3.11"
