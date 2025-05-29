@@ -1,4 +1,3 @@
-import pytest
 from lib.models.author import Author
 
 def test_create_and_find_author():

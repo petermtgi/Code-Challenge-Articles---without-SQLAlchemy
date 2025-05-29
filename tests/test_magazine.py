@@ -1,4 +1,3 @@
-import pytest
 from lib.models.magazine import Magazine
 
 def test_create_and_find_magazine():

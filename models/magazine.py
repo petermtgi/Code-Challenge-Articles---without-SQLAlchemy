@@ -52,7 +52,7 @@ class Magazine:
         return Article.find_by_magazine(self.id)
 
     def contributors(self):
-        from lib.models.author import Author  # <-- moved import here
+        from lib.models.author import Author
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("""
@@ -73,7 +73,7 @@ class Magazine:
         return titles
 
     def contributing_authors(self):
-        from lib.models.author import Author  # <-- moved import here
+        from lib.models.author import Author
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("""
@@ -86,3 +86,21 @@ class Magazine:
         authors = [Author(id=row['id'], name=row['name']) for row in cursor.fetchall()]
         conn.close()
         return authors
+
+    @classmethod
+    def top_publisher(cls):
+        conn = get_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT m.*, COUNT(a.id) as article_count
+            FROM magazines m
+            JOIN articles a ON m.id = a.magazine_id
+            GROUP BY m.id
+            ORDER BY article_count DESC
+            LIMIT 1
+        """)
+        row = cursor.fetchone()
+        conn.close()
+        if row:
+            return cls(id=row['id'], name=row['name'], category=row['category'])
+        return None

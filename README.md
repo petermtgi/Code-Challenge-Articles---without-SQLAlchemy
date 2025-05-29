@@ -2,36 +2,15 @@
 
 ## Setup
 
-1. Install dependencies (if any)
-2. Run the database setup:
+1. Run the database setup:
     ```
     python scripts/setup_db.py
     ```
-3. Seed the database:
+2. Seed the database:
     ```
-    python lib/db/seed.py
+    python -m lib.db.seed
     ```
-4. Run debug session:
+3. Run tests:
     ```
-    python lib/debug.py
+    pytest tests/
     ```
-
-## Project Structure
-
-- `lib/models/`: Model classes for Author, Article, Magazine
-- `lib/db/`: Database connection, schema, and seed scripts
-- `scripts/`: Setup and query scripts
-- `tests/`: Pytest test files
-
-## Features
-
-- Add/find authors, magazines, articles
-- Relationship methods (articles by author, contributors, etc.)
-- Aggregate queries (topic areas, contributing authors, etc.)
-
-## Testing
-
-Run all tests with:
-```
-pytest
-```

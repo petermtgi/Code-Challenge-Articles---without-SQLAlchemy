@@ -42,7 +42,7 @@ class Author:
         return Article.find_by_author(self.id)
 
     def magazines(self):
-        from lib.models.magazine import Magazine  # <-- moved import here
+        from lib.models.magazine import Magazine
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("""
