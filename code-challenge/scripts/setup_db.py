@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 def setup():
-    schema_path = os.path.join("lib", "db", "schema.sql")
+    schema_path = os.path.join("code-challenge", "lib", "db", "schema.sql")
     if not os.path.exists(schema_path):
         print("Schema file not found at", schema_path)
         return
