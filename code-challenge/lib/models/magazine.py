@@ -1,5 +1,4 @@
 from lib.db.connection import get_connection
-from lib.models.author import Author
 from lib.models.article import Article
 
 class Magazine:
@@ -53,6 +52,7 @@ class Magazine:
         return Article.find_by_magazine(self.id)
 
     def contributors(self):
+        from lib.models.author import Author  # <-- moved import here
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("""
@@ -73,6 +73,7 @@ class Magazine:
         return titles
 
     def contributing_authors(self):
+        from lib.models.author import Author  # <-- moved import here
         conn = get_connection()
         cursor = conn.cursor()
         cursor.execute("""
